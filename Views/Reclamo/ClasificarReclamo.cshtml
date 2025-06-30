@@ -1,0 +1,92 @@
+﻿@model ClasificarReclamoViewModel
+@{
+    ViewData["Title"] = "Clasificar Reclamo";
+}
+
+<h2>Clasificar Reclamo</h2>
+
+<form asp-action="ActualizarEstado" method="post">
+    <input type="hidden" asp-for="Reclamo.IdReclamo" />
+    <div class="form-group">
+        <label asp-for="Reclamo.NombreProveedor"></label>
+        <input asp-for="Reclamo.NombreProveedor" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Reclamo.IdConsumidorNavigation.NombreConsumidor"></label>
+        <input asp-for="Reclamo.IdConsumidorNavigation.NombreConsumidor" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Reclamo.DireccionProveedor"></label>
+        <input asp-for="Reclamo.DireccionProveedor" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Reclamo.DetalleReclamo"></label>
+        <textarea asp-for="Reclamo.DetalleReclamo" class="form-control" readonly></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="Reclamo.TelefonoProveedor"></label>
+        <input asp-for="Reclamo.TelefonoProveedor" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Reclamo.MontoReclamo"></label>
+        <input asp-for="Reclamo.MontoReclamo" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Reclamo.FechaIngreso"></label>
+        <input asp-for="Reclamo.FechaIngreso" class="form-control" type="date" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Reclamo.FechaRevision"></label>
+        <input asp-for="Reclamo.FechaRevision" class="form-control" type="date" />
+    </div>
+
+    <br/>
+
+    <input type="hidden" name="idReclamo" value="@Model.Reclamo.IdReclamo"/>
+    <div class="form-group">
+        <label asp-for="Reclamo.IdEstado" class="control-label">Estado</label>
+        <select id="estadoSelect" name="idEstado" class="form-control"
+                asp-items="@(new SelectList(Model.Estados, "IdEstado", "NombreEstado"))">
+        </select>
+    </div>
+
+    <div class="form-group" id="motivoContainer" style="display:none;">
+        <label for="motivo">Motivo</label>
+        <textarea id="motivo" name="motivo" class="form-control"></textarea>
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Guardar" class="btn btn-primary" />
+    </div>
+    <br />
+    <a href="@Url.Action("ListaReclamo", "Reclamo")" class="btn btn-primary">Volver a la Lista</a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function()
+        {
+            let estadoSelect = document.getElementById("estadoSelect");
+            let motivoContainer = document.getElementById("motivoContainer");
+
+            if(!estadoSelect || !motivoContainer) {
+                console.error("Elementos no encontrados");
+                return;
+            }
+
+            estadoSelect.addEventListener("change", function(){
+                let selectedValue = parseInt(this.value);
+                motivoContainer.style.display = (selectedValue === 3 || selectedValue === 4) ? "block" : "none";
+            });
+            estadoSelect.dispatchEvent(new Event("change"));
+        });
+    </script>
+}
+
+
+
+
+
+

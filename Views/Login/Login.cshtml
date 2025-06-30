@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="loginbox col-4">
+            <form method="post">
+                <h2 class="cabeza">LOGIN</h2>
+                <hr />
+                <label>Usuario</label><br />
+                <input class="form-control" type="text" name="usuario" required /><br />
+                <label>Clave</label><br />
+                <input class="form-control" type="password" name="clave" required /><br />
+                <button class="btn btn-primary" type="submit">Ingresar</button>
+            </form>
+            @if (ViewBag.Error != null)
+            {
+                <p style="color: red;">@ViewBag.Error</p>
+            }
+        </div>
+        <div class="col-4"></div>
+    </div>
+</body>

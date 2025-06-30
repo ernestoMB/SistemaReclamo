@@ -1,0 +1,63 @@
+﻿@model ModelReclamoConsumidor
+@{
+    ViewData["Title"] = "CrearReclamo";
+}
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6 formReclamo">
+        <form asp-action="Crear" method="post">
+            <h4>Reclamo</h4>
+            <label>Datos del Proveedor</label><br />
+            <label>NombreProveedor </label>
+            <input asp-for="Reclamo.NombreProveedor" class="form-control" />
+
+
+            <label>DireccionProveedor </label>
+            <input asp-for="Reclamo.DireccionProveedor" class="form-control" />
+
+
+            <label>Detalle del Reclamo</label>
+            <textarea asp-for="Reclamo.DetalleReclamo" class="form-control"></textarea>
+
+
+            <label>Telefono Proveedor</label>
+            <input asp-for="Reclamo.TelefonoProveedor"  class="form-control" />
+
+
+            <label>Monto Reclamo</label>
+            <input asp-for="Reclamo.MontoReclamo" class="form-control" />
+
+
+            <label>Fecha Ingreso</label>
+            <input asp-for="Reclamo.FechaIngreso" class="form-control" type="date" />
+
+
+            <label>Fecha Revision</label>
+            <input asp-for="Reclamo.FechaRevision" class="form-control" type="date" />
+            <hr />
+            <label>Datos del Consumidor</label><br />
+            <label>Nombre </label>
+            <input asp-for="Consumidor.NombreConsumidor"  class="form-control" />
+
+            <label>Apellido </label>
+            <input asp-for="Consumidor.ApeliidoConsumidor" class="form-control" />
+
+            <label>Dirección </label>
+            <input asp-for="Consumidor.Direccion"  class="form-control" />
+
+
+            <label>Correo Electronico </label>
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">@@</span>
+                <input asp-for="Consumidor.CorreoElectronico"  class="form-control" aria-describedby="basic-addon1" />
+            </div>
+
+            <label>Dui </label>
+            <input asp-for="Consumidor.DuiConsumidor" class="form-control" />
+
+            <br />
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>

@@ -1,0 +1,35 @@
+﻿
+@model LoginViewModel
+@{
+    ViewData["Title"] = "LoginDC";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="loginbox col-4">
+            <form method="post">
+                <h2 class="cabeza">LOGIN</h2>
+                <hr />
+                <label>Usuario</label><br />
+                <input class="form-control" type="text" asp-for="Usuario" required /><br />
+                <label>Clave</label><br />
+                <input class="form-control" type="password" asp-for="Clave" required /><br />
+                <button class="btn btn-primary" type="submit">Ingresar</button>
+               <!-- <div style="color:red;">@Model.ErrorMessage</div>-->
+            </form>
+           <div>
+                @if (@Model.ErrorMessage != null)
+                {
+                    <p style="color: red;">@Model.ErrorMessage</p>
+                }
+           </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</body>

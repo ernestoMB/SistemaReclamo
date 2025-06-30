@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SistemaReclamo.Models.TReclamo>
+@{
+    ViewData["Title"] = "Lista de Reclamos";
+}
+
+<h2>Lista de Reclamos</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>IdReclamo</th>
+            <th>Nombre Proveedor</th>
+            
+            <th>Nombre Consumidor</th>
+            
+            <th>Monto del Reclamo</th>
+            
+            <th>Estado</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reclamo in Model)
+        {
+            <tr>
+                <td>@reclamo.IdReclamo</td>
+                <td>@reclamo.NombreProveedor</td>
+                
+                <td>@reclamo.IdConsumidorNavigation?.NombreConsumidor</td>
+               
+                <td>@reclamo.MontoReclamo</td>
+                
+                <td>@reclamo.IdEstadoNavigation?.NombreEstado</td>
+              
+                <td>
+                    <a href="@Url.Action("DetalleReclamo", "Reclamo", new { id = reclamo.IdReclamo })" class="btn btn-primary">Ver Reclamo</a>
+                    <a href="@Url.Action("ClasificarReclamo", "Reclamo", new { id = reclamo.IdReclamo })" class="btn btn-secondary">Clasificar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
